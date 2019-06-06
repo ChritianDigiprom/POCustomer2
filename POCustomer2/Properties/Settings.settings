@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="POCustomer2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="applicationkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">b2585956-025f-45a7-8ea4-b386144419b2</Value>
+    </Setting>
+    <Setting Name="clientkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0e7dc82e-32f1-4a02-9f49-a5dce055f5b8</Value>
+    </Setting>
+    <Setting Name="debug" Type="System.String" Scope="User">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="outfilename" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\test\POExport2.csv</Value>
+    </Setting>
+    <Setting Name="outdelimiter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;</Value>
+    </Setting>
+    <Setting Name="demo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">false</Value>
+    </Setting>
+    <Setting Name="maxrecords" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
