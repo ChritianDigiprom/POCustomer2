@@ -1,16 +1,13 @@
 ﻿using System.Configuration;
-using System.Collections.Specialized;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using GoApi;
 using GoApi.Core;
-using GoApi.Party;
 using CsvHelper;
 using System.IO;
-
+using static GoApi.Core.Global.Settings;
 
 namespace POCustomers
 {
@@ -37,7 +34,7 @@ namespace POCustomers
             strOutDelimiter = ConfigurationManager.AppSettings["outdelimiter"];
             strMaxRecords =  ConfigurationManager.AppSettings["maxrecords"];
 
-            intMaxRecords = 50;
+            intMaxRecords = 1000;
             if (!Int32.TryParse(strMaxRecords, out intMaxRecords))
             {
                 intMaxRecords = 50;
@@ -53,19 +50,28 @@ namespace POCustomers
                 var applicationkey = strApplicationKey; //"b2585956-025f-45a7-8ea4-b386144419b2";
                 var clientkey = strClientKey; //"0e7dc82e-32f1-4a02-9f49-a5dce055f5b8";
 
-                GoApi.Global.Settings.Mode = GoApi.Global.Settings.EndPointMode.Demo;
+                //GoApi.Core.Global.Settings.Mode = EndPointMode.Production;
                 var authorizationSettings = new AuthorizationSettings
                 {
-
                     ApplicationKey = applicationkey,
                     ClientKey = clientkey,
-                    TokenStore = new BasicTokenStore(@"my.tokenstore")
+                    TokenStore = new BasicTokenStore(@"my.tokenstore"),
+                    EndPointHost = EndPointMode.Production
                 };
 
-                var authorization = new Authorization(authorizationSettings);
-                var api = new Go(authorization);
-                //Authorization.CreateAsync (authorization,authorizationSettings, )
+
+                //var api = Go.CreateAsync(authorizationSettings);
                 
+               var authorization = new Authorization(authorizationSettings);
+               //Go api = new Go(authorization);
+                Go api = new Go(authorizationSettings);
+
+
+
+
+
+
+
                 //Console.WriteLine("Getting customers starting with A. Max 50");
 
                 var customers = api.Customer.Get()
@@ -124,33 +130,40 @@ namespace POCustomers
                     //Get all contacts on current customer record
                     var contacts = api.Customer.ContactPerson.Get(customer1);
 
+                    Console.WriteLine("18 CompanyEmail: " + customer1.EmailAddress);
+                    Console.WriteLine("24 CustomerNumber: " + customer1.Code);
+                    Console.WriteLine("16 id: " + customer1.Id);
+
                     //Create class instance of customer records, one for each contact on customer
                     foreach (var contact in contacts)
                     {
-                        //contactFirstName = contact.FirstName;
-                        //contactLastName = contact.LastName;
-                        //contactPhoneNumber = contact.PhoneNumber;
-                        //contactEmailAddress = contact.EmailAddress;
+                        Console.WriteLine("contactFirstName" + contact.FirstName);
+                        Console.WriteLine("contactLastName"  + contact.LastName);
+                        Console.WriteLine ("ContactID" + contact.Id.ToString());
+                     
+                       Console.WriteLine("contactEmailAddress" + contact.EmailAddress);
                         //contactUserName = contactEmailAddress;
 
-                        // Construct class instance of customer record
-                        PowerOfficeCust loopCust = new PowerOfficeCust(
+                       // Construct class instance of customer record
+                       PowerOfficeCust loopCust = new PowerOfficeCust(
                             contact.FirstName,
                             contact.LastName,
                             contact.EmailAddress,
                             "", //middlename
+                            "",//disabled
                             customer1.Name,
                             contact.PhoneNumber,
                             "", //cell
                             "",//title
                             "", //department
-                            contactEmailAddress,
+                            contact.EmailAddress,
                             lstAddress.City,
                             lstAddress.CountryCode,
                             lstAddress.Address1,
                             lstAddress.ZipCode,
                             "",//location
-                            customer1.Id.ToString(),
+                            //customer1.Id.ToString(),
+                            contact.Id.ToString(),
                             "", //notes
                             customer1.EmailAddress,
                             customer1.PhoneNumber,
@@ -166,13 +179,16 @@ namespace POCustomers
                 }
 
                 // Now write all records to text file
-                using (StreamWriter sw = new StreamWriter(@"C:\test\testpo.csv", false, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(@strOutFileName, false, Encoding.UTF8))
                 {
 
-                    var writer = new CsvWriter(sw);
+                  
+                    CsvWriter writer = new CsvWriter(sw,System.Globalization.CultureInfo.CurrentCulture);
                     writer.Configuration.ShouldQuote = (field, context) => true;
-
+                    writer.Configuration.IncludePrivateMembers = true;
+                    writer.Configuration.RegisterClassMap<POCustomerMap>();
                     //writer.Configuration.QuoteAllFields = true;
+
                     writer.WriteRecords(records);
                     writer.Flush();
                 }
@@ -185,8 +201,8 @@ namespace POCustomers
             }
 
             //Wait for userinput
-            Console.WriteLine("\n\nPress any key ...");
-            Console.ReadKey();
+            //Console.WriteLine("\n\nPress any key ...");
+            //Console.ReadKey();
         }
     }
 }

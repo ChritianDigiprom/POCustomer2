@@ -5,21 +5,48 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POCustomer2", "POCustomer2\POCustomer2.csproj", "{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupPOCustomer", "SetupPOCustomer\SetupPOCustomer.vdproj", "{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
 		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Debug|Default.ActiveCfg = Debug|Any CPU
+		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Debug|Default.Build.0 = Debug|Any CPU
 		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Release|Default.ActiveCfg = Release|Any CPU
+		{CC7918AC-8B9A-4E6F-80D7-FC581DBBD2E6}.Release|Default.Build.0 = Release|Any CPU
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Debug|Any CPU.ActiveCfg = Debug
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Debug|Default.ActiveCfg = Debug
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Debug|Default.Build.0 = Debug
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Release|Any CPU.ActiveCfg = Release
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Release|Any CPU.Build.0 = Release
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Release|Default.ActiveCfg = Release
+		{243A04B5-8EAA-4D0F-8363-9DFFC42159F7}.Release|Default.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42EF8FD8-D349-43B9-8714-B0608165C142}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
 	EndGlobalSection
 EndGlobal
